@@ -1,2 +1,2 @@
 # GesType
-AT&amp;T Hackathon - Mobile App Challenge 2015 
+AT&amp;T Hackathon-Mobile App Challenge 2015 
