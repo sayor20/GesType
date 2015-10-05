@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Sayor/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/Sayor/Desktop/BlindTouch/BlindTouch2/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-85e3f1f79e49342f5679f132d904b3019bab9dde.jar" />
+    </item>
+    <item
+        jar="/Users/Sayor/Desktop/BlindTouch/BlindTouch2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/Sayor/Desktop/BlindTouch/BlindTouch2/app/build/intermediates/pre-dexed/debug/classes-0f502ca5a7a66a49dd34d5df53ac565232c5e24b.jar" />
+    </item>
+    <item
+        jar="/Users/Sayor/Desktop/BlindTouch/BlindTouch2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/Sayor/Desktop/BlindTouch/BlindTouch2/app/build/intermediates/pre-dexed/debug/classes-ad40faa6a41b986305cb1ca9e15b377bf4a53485.jar" />
+    </item>
+    <item
+        jar="/Users/Sayor/Desktop/BlindTouch/BlindTouch2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/Sayor/Desktop/BlindTouch/BlindTouch2/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-ce5a9454ef3ffffc378e29da8ed9536e57aab31d.jar" />
+    </item>
+
+</items>
