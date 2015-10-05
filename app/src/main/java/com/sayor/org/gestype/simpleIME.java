@@ -6,15 +6,12 @@ import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputConnection;
 
 public class simpleIME extends InputMethodService
-        implements KeyboardView.OnKeyboardActionListener,MyKeyBoardView.OnKeyboardActListener {
+       implements MyKeyBoardView.OnMyKeyboardActionListener, KeyboardView.OnKeyboardActionListener {
 
     private MyKeyBoardView kv;
     private Keyboard keyboard;
-
-    private boolean caps = false;
 
     @Override
     public View onCreateInputView() {
@@ -22,8 +19,123 @@ public class simpleIME extends InputMethodService
         keyboard = new Keyboard(this, R.xml.qwerty);
         kv.setKeyboard(keyboard);
         kv.setOnKeyboardActionListener(this);
-        kv.SetOnKeyboardActListener(this);
+        kv.SetOnMyKeyboardActionListener(this);
+        kv.setPreviewEnabled(false);
         return kv;
+    }
+
+    // custom event methods
+
+    public void leftTopSwipeLeft(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_A);
+    }
+
+    public void leftTopSwipeRight(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_C);
+    }
+
+    public void leftTopSwipeUp(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_B);
+    }
+
+    public void leftTopSwipeDown(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_D);
+    }
+
+    public void rightTopSwipeLeft(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_F);
+    }
+
+    public void rightTopSwipeRight(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_G);
+    }
+
+    public void rightTopSwipeUp(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_H);
+    }
+
+    public void rightTopSwipeDown(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_I);
+    }
+
+    public void leftBottomSwipeLeft(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_K);
+    }
+
+    public void leftBottomSwipeRight(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_L);
+    }
+
+    public void leftBottomSwipeUp(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_M);
+    }
+
+    public void leftBottomSwipeDown(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_N);
+    }
+
+    public void rightBottomSwipeLeft(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_P);
+    }
+
+    public void rightBottomSwipeRight(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_O);
+    }
+
+    public void rightBottomSwipeUp(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_R);
+    }
+
+    public void rightBottomSwipeDown(){
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_S);
+    }
+
+    public void defaultLeftTopSingle() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_E);
+    }
+
+    public void defaultLeftBottomSingle() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_O);
+    }
+
+    public void defaultRightTopSingle() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_J);
+    }
+
+    public void defaultRightBottomSingle() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_T);
+    }
+
+    public void defaultLeftTopDouble() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_U);
+    }
+
+    public void defaultLeftBottomDouble() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_SPACE);
+    }
+
+    public void defaultRightTopDouble() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_W);
+    }
+
+    public void defaultRightBottomDouble() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_DEL);
+    }
+
+    public void defaultLeftTopLong() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_V);
+    }
+
+    public void defaultLeftBottomLong() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_X);
+    }
+
+    public void defaultRightTopLong() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_Y);
+    }
+
+    public void defaultRightBottomLong() {
+        sendDownUpKeyEvents(KeyEvent.KEYCODE_Z);
     }
 
     @Override
@@ -36,28 +148,9 @@ public class simpleIME extends InputMethodService
 
     }
 
+    @Override
     public void onKey(int primaryCode, int[] keyCodes) {
-        InputConnection ic = getCurrentInputConnection();
-        //  playClick(primaryCode);
-        switch(primaryCode){
-            case Keyboard.KEYCODE_DELETE :
-                ic.deleteSurroundingText(1, 0);
-                break;
-            case Keyboard.KEYCODE_SHIFT:
-                caps = !caps;
-                keyboard.setShifted(caps);
-                kv.invalidateAllKeys();
-                break;
-            case Keyboard.KEYCODE_DONE:
-                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-                break;
-            default:
-                char code = (char)primaryCode;
-                if(Character.isLetter(code) && caps){
-                    code = Character.toUpperCase(code);
-                }
-                ic.commitText(String.valueOf(code),1);
-        }
+
     }
 
     @Override
@@ -83,53 +176,5 @@ public class simpleIME extends InputMethodService
     @Override
     public void swipeUp() {
 
-    }
-
-    public void leftSwipeLeft(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_A);
-        i.sendKeyEvent(K);
-    }
-
-    public void leftSwipeRight(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_C);
-        i.sendKeyEvent(K);
-    }
-
-    public void leftSwipeUp(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_B);
-        i.sendKeyEvent(K);
-    }
-
-    public void leftSwipeDown(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_D);
-        i.sendKeyEvent(K);
-    }
-
-    public void rightSwipeLeft(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_F);
-        i.sendKeyEvent(K);
-    }
-
-    public void rightSwipeRight(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_H);
-        i.sendKeyEvent(K);
-    }
-
-    public void rightSwipeUp(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_G);
-        i.sendKeyEvent(K);
-    }
-
-    public void rightSwipeDown(){
-        InputConnection i=getCurrentInputConnection();
-        KeyEvent K=new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_I);
-        i.sendKeyEvent(K);
     }
 }

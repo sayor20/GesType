@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/Sayor/Desktop/GesType/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jar="/Users/Sayor/Desktop/GItHub Projects/GesType/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/Sayor/Desktop/GesType/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-8f50899d369ed22ec6ba1955ee3d43fe2bc760e8.jar" />
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/Sayor/Desktop/GItHub Projects/GesType/app/build/intermediates/pre-dexed/debug/classes-dbcbaf8f8428aec782917ba2f157aa1768ec62f5.jar" />
     </item>
     <item
         jar="/Users/Sayor/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/Sayor/Desktop/GesType/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-c1244d613eeb85b785f3721d23bfbf44ef193d37.jar" />
+        <dex dex="/Users/Sayor/Desktop/GItHub Projects/GesType/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-c1244d613eeb85b785f3721d23bfbf44ef193d37.jar" />
     </item>
     <item
-        jar="/Users/Sayor/Desktop/GesType/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jar="/Users/Sayor/Desktop/GItHub Projects/GesType/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/Sayor/Desktop/GItHub Projects/GesType/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-7f705cef6b25cc15cb4b3f3e6926bcb0c4babe35.jar" />
+    </item>
+    <item
+        jar="/Users/Sayor/Desktop/GItHub Projects/GesType/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/Sayor/Desktop/GesType/app/build/intermediates/pre-dexed/debug/classes-9e56088840778694510486ead70f3f4a64f61bfd.jar" />
-    </item>
-    <item
-        jar="/Users/Sayor/Desktop/GesType/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/Sayor/Desktop/GesType/app/build/intermediates/pre-dexed/debug/classes-329f962303b794837b2f847368e1e3672b46f2d3.jar" />
+        <dex dex="/Users/Sayor/Desktop/GItHub Projects/GesType/app/build/intermediates/pre-dexed/debug/classes-5187b9ca984ddf027b8610875fa01cbd0e4fddb5.jar" />
     </item>
 
 </items>

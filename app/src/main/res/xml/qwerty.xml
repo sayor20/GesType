@@ -2,11 +2,11 @@
     android:keyWidth="50%p"
     android:keyHeight="100dp">
     <Row>
-        <Key android:keyLabel="e" />
+        <Key android:keyLabel="e"/>
         <Key android:keyLabel="j"/>
     </Row>
     <Row>
-        <Key android:keyLabel="o" />
+        <Key android:keyLabel="o"/>
         <Key android:keyLabel="t"/>
     </Row>
 </Keyboard>

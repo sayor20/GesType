@@ -7,229 +7,337 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 
-public class MyKeyBoardView extends KeyboardView {
+public class MyKeyBoardView extends KeyboardView  {
 
-    // Extended
-    public interface OnKeyboardActListener{
+    private OnMyKeyboardActionListener mKeyboardActionListener;
+    GestureDetector gest;
+    int mSwipeThreshold;
 
-        void leftSwipeLeft();
+    //custom interface
 
-        void leftSwipeRight();
+    public interface OnMyKeyboardActionListener{
 
-        void leftSwipeUp();
+        void leftTopSwipeLeft();
 
-        void leftSwipeDown();
+        void leftTopSwipeRight();
 
-        void rightSwipeLeft();
+        void leftTopSwipeUp();
 
-        void rightSwipeRight();
+        void leftTopSwipeDown();
 
-        void rightSwipeUp();
+        void rightTopSwipeLeft();
 
-        void rightSwipeDown();
+        void rightTopSwipeRight();
+
+        void rightTopSwipeUp();
+
+        void rightTopSwipeDown();
+
+        void leftBottomSwipeLeft();
+
+        void leftBottomSwipeRight();
+
+        void leftBottomSwipeUp();
+
+        void leftBottomSwipeDown();
+
+        void rightBottomSwipeLeft();
+
+        void rightBottomSwipeRight();
+
+        void rightBottomSwipeUp();
+
+        void rightBottomSwipeDown();
+
+        void defaultLeftTopSingle();
+
+        void defaultLeftBottomSingle();
+
+        void defaultRightTopSingle();
+
+        void defaultRightBottomSingle();
+
+        void defaultLeftTopDouble();
+
+        void defaultLeftBottomDouble();
+
+        void defaultRightTopDouble();
+
+        void defaultRightBottomDouble();
+
+        void defaultLeftTopLong();
+
+        void defaultLeftBottomLong();
+
+        void defaultRightTopLong();
+
+        void defaultRightBottomLong();
     }
 
-    public void SetOnKeyboardActListener(OnKeyboardActListener listener) {
+
+    public void SetOnMyKeyboardActionListener(OnMyKeyboardActionListener listener) {
         mKeyboardActionListener = listener;
     }
 
     public MyKeyBoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mSwipeThreshold = (int) (500 * getResources().getDisplayMetrics().density);
+        gest = initGestureDetector();
     }
 
-    GestureDetector gest;
-    SwipeTracker mSwipeTracker=new SwipeTracker();
-    private int mSwipeThreshold = (int) (500 * getResources().getDisplayMetrics().density);
+    // overriding custom gesture movements
 
-    private OnKeyboardActListener mKeyboardActionListener;
-
-    {
+    private GestureDetector initGestureDetector() {
         gest = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                if (e.getX() < getWidth() / 2) {
+                    if(e.getY() <getHeight() / 2){
+                        defaultLeftTopSingle();
+                    }else{
+                        defaultLeftBottomSingle();
+                    }
+                } else {
+                    if(e.getY()<getHeight() / 2){
+                        defaultRightTopSingle();
+                    }else{
+                        defaultRightBottomSingle();
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                if (e.getX() < getWidth() / 2) {
+                    if(e.getY() <getHeight() / 2){
+                        defaultLeftTopDouble();
+                    }else{
+                        defaultLeftBottomDouble();
+                    }
+                } else {
+                    if(e.getY()<getHeight() / 2){
+                        defaultRightTopDouble();
+                    }else{
+                        defaultRightBottomDouble();
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+                if (e.getX() < getWidth() / 2) {
+                    if(e.getY() <getHeight() / 2){
+                        defaultLeftTopLong();
+                    }else{
+                        defaultLeftBottomLong();
+                    }
+                } else {
+                    if(e.getY()<getHeight() / 2){
+                        defaultRightTopLong();
+                    }else{
+                        defaultRightBottomLong();
+                    }
+                }
+            }
+
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 final float absX = Math.abs(velocityX);
                 final float absY = Math.abs(velocityY);
                 float deltaX = e2.getX() - e1.getX();
                 float deltaY = e2.getY() - e1.getY();
-                int travelX = getWidth() / 6; // Half the keyboard width
-                int travelY = getHeight() / 2; // Half the keyboard height
-                mSwipeTracker.computeCurrentVelocity(1000);
+                // swipe distance for horizontal
+                int travelX = getWidth() / 6;
+                // swipe distance for vertical
+                int travelY = getHeight() / 6;
+                // swipe detection on two panes based on width
                 if (e1.getX() < getWidth() / 2) {
-                    if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
-                        leftSwipeRight();
-                        return true;
-
-                    } else if (velocityX < -mSwipeThreshold && absY < absX && deltaX < -travelX) {
-                        leftSwipeLeft();
-                        return true;
-                    } else if (velocityY < -mSwipeThreshold && absX < absY && deltaY < -travelY) {
-                        leftSwipeUp();
-                        return true;
-                    } else if (velocityY > mSwipeThreshold && absX < absY / 2 && deltaY > travelY) {
-                        leftSwipeDown();
-                        return true;
+                    if(e1.getY() <getHeight() / 2){
+                        if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
+                            leftTopSwipeRight();
+                            return true;
+                        } else if (velocityX < -mSwipeThreshold && absY < absX && deltaX < -travelX) {
+                            leftTopSwipeLeft();
+                            return true;
+                        } else if (velocityY < -mSwipeThreshold && absX < absY && deltaY < -travelY) {
+                            leftTopSwipeUp();
+                            return true;
+                        } else if (velocityY > mSwipeThreshold && absX < absY / 2 && deltaY > travelY) {
+                            leftTopSwipeDown();
+                            return true;
+                        }
+                    }else{
+                        if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
+                            leftBottomSwipeRight();
+                            return true;
+                        } else if (velocityX < -mSwipeThreshold && absY < absX && deltaX < -travelX) {
+                            leftBottomSwipeLeft();
+                            return true;
+                        } else if (velocityY < -mSwipeThreshold && absX < absY && deltaY < -travelY) {
+                            leftBottomSwipeUp();
+                            return true;
+                        } else if (velocityY > mSwipeThreshold && absX < absY / 2 && deltaY > travelY) {
+                            leftBottomSwipeDown();
+                            return true;
+                        }
                     }
                 } else {
-                    if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
-                        rightSwipeRight();
-                        return true;
-                    } else if (velocityX < -mSwipeThreshold && absY < absX && deltaX < -travelX) {
-                        rightSwipeLeft();
-                        return true;
-                    } else if (velocityY < -mSwipeThreshold && absX < absY && deltaY < -travelY) {
-                        rightSwipeUp();
-                        return true;
-                    } else if (velocityY > mSwipeThreshold && absX < absY / 2 && deltaY > travelY) {
-                        rightSwipeDown();
-                        return true;
+                    if(e1.getY()<getHeight() / 2){
+                        if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
+                            rightTopSwipeRight();
+                            return true;
+                        } else if (velocityX < -mSwipeThreshold && absY < absX && deltaX < -travelX) {
+                            rightTopSwipeLeft();
+                            return true;
+                        } else if (velocityY < -mSwipeThreshold && absX < absY && deltaY < -travelY) {
+                            rightTopSwipeUp();
+                            return true;
+                        } else if (velocityY > mSwipeThreshold && absX < absY / 2 && deltaY > travelY) {
+                            rightTopSwipeDown();
+                            return true;
+                        }
+                    }else{
+                        if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
+                            rightBottomSwipeRight();
+                            return true;
+                        } else if (velocityX < -mSwipeThreshold && absY < absX && deltaX < -travelX) {
+                            rightBottomSwipeLeft();
+                            return true;
+                        } else if (velocityY < -mSwipeThreshold && absX < absY && deltaY < -travelY) {
+                            rightBottomSwipeUp();
+                            return true;
+                        } else if (velocityY > mSwipeThreshold && absX < absY / 2 && deltaY > travelY) {
+                            rightBottomSwipeDown();
+                            return true;
+                        }
                     }
                 }
                 return false;
             }
 
         });
+        return gest;
     }
 
-    private static class SwipeTracker {
-
-        static final int NUM_PAST = 4;
-        static final int LONGEST_PAST_TIME = 200;
-
-        final float mPastX[] = new float[NUM_PAST];
-        final float mPastY[] = new float[NUM_PAST];
-        final long mPastTime[] = new long[NUM_PAST];
-
-        float mYVelocity;
-        float mXVelocity;
-
-        public void clear() {
-            mPastTime[0] = 0;
-        }
-
-        public void addMovement(MotionEvent ev) {
-            long time = ev.getEventTime();
-            final int N = ev.getHistorySize();
-            for (int i=0; i<N; i++) {
-                addPoint(ev.getHistoricalX(i), ev.getHistoricalY(i),
-                        ev.getHistoricalEventTime(i));
-            }
-            addPoint(ev.getX(), ev.getY(), time);
-        }
-
-        private void addPoint(float x, float y, long time) {
-            int drop = -1;
-            int i;
-            final long[] pastTime = mPastTime;
-            for (i=0; i<NUM_PAST; i++) {
-                if (pastTime[i] == 0) {
-                    break;
-                } else if (pastTime[i] < time-LONGEST_PAST_TIME) {
-                    drop = i;
-                }
-            }
-            if (i == NUM_PAST && drop < 0) {
-                drop = 0;
-            }
-            if (drop == i) drop--;
-            final float[] pastX = mPastX;
-            final float[] pastY = mPastY;
-            if (drop >= 0) {
-                final int start = drop+1;
-                final int count = NUM_PAST-drop-1;
-                System.arraycopy(pastX, start, pastX, 0, count);
-                System.arraycopy(pastY, start, pastY, 0, count);
-                System.arraycopy(pastTime, start, pastTime, 0, count);
-                i -= (drop+1);
-            }
-            pastX[i] = x;
-            pastY[i] = y;
-            pastTime[i] = time;
-            i++;
-            if (i < NUM_PAST) {
-                pastTime[i] = 0;
-            }
-        }
-
-        public void computeCurrentVelocity(int units) {
-            computeCurrentVelocity(units, Float.MAX_VALUE);
-        }
-
-        public void computeCurrentVelocity(int units, float maxVelocity) {
-            final float[] pastX = mPastX;
-            final float[] pastY = mPastY;
-            final long[] pastTime = mPastTime;
-
-            final float oldestX = pastX[0];
-            final float oldestY = pastY[0];
-            final long oldestTime = pastTime[0];
-            float accumX = 0;
-            float accumY = 0;
-            int N=0;
-            while (N < NUM_PAST) {
-                if (pastTime[N] == 0) {
-                    break;
-                }
-                N++;
-            }
-
-            for (int i=1; i < N; i++) {
-                final int dur = (int)(pastTime[i] - oldestTime);
-                if (dur == 0) continue;
-                float dist = pastX[i] - oldestX;
-                float vel = (dist/dur) * units;   // pixels/frame.
-                if (accumX == 0) accumX = vel;
-                else accumX = (accumX + vel) * .5f;
-
-                dist = pastY[i] - oldestY;
-                vel = (dist/dur) * units;   // pixels/frame.
-                if (accumY == 0) accumY = vel;
-                else accumY = (accumY + vel) * .5f;
-            }
-            mXVelocity = accumX < 0.0f ? Math.max(accumX, -maxVelocity)
-                    : Math.min(accumX, maxVelocity);
-            mYVelocity = accumY < 0.0f ? Math.max(accumY, -maxVelocity)
-                    : Math.min(accumY, maxVelocity);
-        }
-
-        public float getXVelocity() {
-            return mXVelocity;
-        }
-
-        public float getYVelocity() {
-            return mYVelocity;
-        }
+    protected void leftTopSwipeLeft() {
+        mKeyboardActionListener.leftTopSwipeLeft();
     }
 
-    protected void leftSwipeLeft() {
-        mKeyboardActionListener.leftSwipeLeft();
+    protected void leftTopSwipeRight() {
+        mKeyboardActionListener.leftTopSwipeRight();
     }
 
-    protected void leftSwipeRight() {
-        mKeyboardActionListener.leftSwipeRight();
+    protected void leftTopSwipeUp() {
+        mKeyboardActionListener.leftTopSwipeUp();
     }
 
-    protected void leftSwipeUp() {
-        mKeyboardActionListener.leftSwipeUp();
+    protected void leftTopSwipeDown() {
+        mKeyboardActionListener.leftTopSwipeDown();
     }
 
-    protected void leftSwipeDown() {
-        mKeyboardActionListener.leftSwipeDown();
+    protected void leftBottomSwipeLeft() {
+        mKeyboardActionListener.leftBottomSwipeLeft();
     }
 
-    protected void rightSwipeLeft() {
-        mKeyboardActionListener.rightSwipeLeft();
+    protected void leftBottomSwipeRight() {
+        mKeyboardActionListener.leftBottomSwipeRight();
     }
 
-    protected void rightSwipeRight() {
-        mKeyboardActionListener.rightSwipeRight();
+    protected void leftBottomSwipeUp() {
+        mKeyboardActionListener.leftBottomSwipeUp();
     }
 
-    protected void rightSwipeUp() {
-        mKeyboardActionListener.rightSwipeUp();
+    protected void leftBottomSwipeDown() {
+        mKeyboardActionListener.leftBottomSwipeDown();
     }
 
-    protected void rightSwipeDown() {
-        mKeyboardActionListener.rightSwipeDown();
+    protected void rightTopSwipeLeft() {
+        mKeyboardActionListener.rightTopSwipeLeft();
+    }
+
+    protected void rightTopSwipeRight() {
+        mKeyboardActionListener.rightTopSwipeRight();
+    }
+
+    protected void rightTopSwipeUp() {
+        mKeyboardActionListener.rightTopSwipeUp();
+    }
+
+    protected void rightTopSwipeDown() {
+        mKeyboardActionListener.rightTopSwipeDown();
+    }
+
+    protected void rightBottomSwipeLeft() {
+        mKeyboardActionListener.rightBottomSwipeLeft();
+    }
+
+    protected void rightBottomSwipeRight() {
+        mKeyboardActionListener.rightBottomSwipeRight();
+    }
+
+    protected void rightBottomSwipeUp() {
+        mKeyboardActionListener.rightBottomSwipeUp();
+    }
+
+    protected void rightBottomSwipeDown() {
+        mKeyboardActionListener.rightBottomSwipeDown();
+    }
+
+    protected void defaultLeftTopSingle() {
+        mKeyboardActionListener.defaultLeftTopSingle();
+    }
+
+    protected void defaultLeftBottomSingle() {
+        mKeyboardActionListener.defaultLeftBottomSingle();
+    }
+
+
+    protected void defaultRightTopSingle() {
+        mKeyboardActionListener.defaultRightTopSingle();
+    }
+
+
+    protected void defaultRightBottomSingle() {
+        mKeyboardActionListener.defaultRightBottomSingle();
+    }
+
+    protected void defaultLeftTopDouble() {
+        mKeyboardActionListener.defaultLeftTopDouble();
+    }
+
+    protected void defaultLeftBottomDouble() {
+        mKeyboardActionListener.defaultLeftBottomDouble();
+    }
+
+
+    protected void defaultRightTopDouble() {
+        mKeyboardActionListener.defaultRightTopDouble();
+    }
+
+
+    protected void defaultRightBottomDouble() {
+        mKeyboardActionListener.defaultRightBottomDouble();
+    }
+
+    protected void defaultLeftTopLong() {
+        mKeyboardActionListener.defaultLeftTopLong();
+    }
+
+    protected void defaultLeftBottomLong() {
+        mKeyboardActionListener.defaultLeftBottomLong();
+    }
+
+
+    protected void defaultRightTopLong() {
+        mKeyboardActionListener.defaultRightTopLong();
+    }
+
+
+    protected void defaultRightBottomLong() {
+        mKeyboardActionListener.defaultRightBottomLong();
     }
 
     public boolean onTouchEvent(MotionEvent event){
