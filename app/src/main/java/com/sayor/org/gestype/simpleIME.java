@@ -1,17 +1,26 @@
 package com.sayor.org.gestype;
 
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
 public class simpleIME extends InputMethodService
-       implements MyKeyBoardView.OnMyKeyboardActionListener, KeyboardView.OnKeyboardActionListener {
+       implements MyKeyBoardView.OnMyKeyboardActionListener, KeyboardView.OnKeyboardActionListener, SensorEventListener {
 
     private MyKeyBoardView kv;
     private Keyboard keyboard;
+
+    private SensorManager mSensorManager;
+    private Sensor mRotation;
 
     @Override
     public View onCreateInputView() {
@@ -21,6 +30,9 @@ public class simpleIME extends InputMethodService
         kv.setOnKeyboardActionListener(this);
         kv.SetOnMyKeyboardActionListener(this);
         kv.setPreviewEnabled(false);
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        // Get the default sensor of specified type
+        mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
         return kv;
     }
 
@@ -175,6 +187,17 @@ public class simpleIME extends InputMethodService
 
     @Override
     public void swipeUp() {
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float y = event.values[1];
+        Toast.makeText(this, y+" ", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 }

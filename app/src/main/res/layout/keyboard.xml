@@ -3,5 +3,8 @@
     android:id="@+id/keyboard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true">
+    android:layout_alignParentBottom="true"
+    android:keyTextColor="#FFFFFF"
+    android:keyBackground="@drawable/keybackground"
+    android:labelTextSize="20sp">
 </com.sayor.org.gestype.MyKeyBoardView>
