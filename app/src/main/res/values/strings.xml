@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GesType</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="simple_ime">Simple IME</string>
+    <string name="subtype_en_US">English (US)</string>
+</resources>
