@@ -300,7 +300,7 @@ public class MyKeyBoardView extends KeyboardView  {
     }
 
 
-    protected void defaultRightBottomSingle() {
+    protected void defaultRightBottomSingle(){
         mKeyboardActionListener.defaultRightBottomSingle();
     }
 

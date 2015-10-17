@@ -24,4 +24,23 @@
         android:layout_alignEnd="@+id/etMain"
         android:onClick="onClear" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable GesType"
+        android:id="@+id/btKeyboard"
+        android:onClick="onSettings"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvInst"
+        android:text="@string/desc"
+        android:layout_marginBottom="40dp"
+        android:layout_above="@+id/btKeyboard"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

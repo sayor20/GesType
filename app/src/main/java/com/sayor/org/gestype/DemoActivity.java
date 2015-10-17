@@ -1,6 +1,8 @@
 package com.sayor.org.gestype;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,11 +16,17 @@ public class DemoActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void onClear(View v){
         EditText etMain = (EditText)findViewById(R.id.etMain);
         etMain.setText("");
+    }
+
+    public void onSettings(View v){
+        Intent i = new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS);
+        startActivity(i);
     }
 
     @Override

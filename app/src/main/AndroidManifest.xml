@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <service android:name="com.sayor.org.gestype.simpleIME"
-            android:label="gestype"
+            android:label="GesType"
             android:permission="android.permission.BIND_INPUT_METHOD"
             >
             <meta-data android:name="android.view.im" android:resource="@xml/method"/>

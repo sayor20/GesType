@@ -1,6 +1,6 @@
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
     android:keyWidth="20%p"
-    android:keyHeight="50px">
+    android:keyHeight="5%p">
     <Row>
         <Key android:keyLabel=" "/>
         <Key android:keyLabel=" c"/>
