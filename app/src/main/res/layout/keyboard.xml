@@ -6,5 +6,6 @@
     android:layout_alignParentBottom="true"
     android:keyTextColor="#FFFFFF"
     android:keyBackground="@drawable/keybackground"
-    android:labelTextSize="20sp">
+    android:labelTextSize="20sp"
+    android:hapticFeedbackEnabled="true">
 </com.sayor.org.gestype.MyKeyBoardView>

@@ -13,7 +13,7 @@ public class MyKeyBoardView extends KeyboardView  {
     GestureDetector gest;
     int mSwipeThreshold;
 
-    //custom interface
+    // interface for handling custom action
 
     public interface OnMyKeyboardActionListener{
 
@@ -85,7 +85,7 @@ public class MyKeyBoardView extends KeyboardView  {
         gest = initGestureDetector();
     }
 
-    // overriding custom gesture movements
+    // overriding default gesture movements
 
     private GestureDetector initGestureDetector() {
         gest = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
@@ -150,12 +150,12 @@ public class MyKeyBoardView extends KeyboardView  {
                 float deltaX = e2.getX() - e1.getX();
                 float deltaY = e2.getY() - e1.getY();
                 // swipe distance for horizontal
-                int travelX = getWidth() / 6;
+                int travelX = getWidth() / 8;
                 // swipe distance for vertical
-                int travelY = getHeight() / 6;
+                int travelY = getHeight() / 8;
                 // swipe detection on two panes based on width
-                if (e1.getX() < getWidth() / 2) {
-                    if(e1.getY() <getHeight() / 2){
+                if ((e1.getX()+e2.getX()/2) < getWidth() / 2) {
+                    if((e1.getY()+e2.getY()/2) < getHeight() / 2){
                         if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
                             leftTopSwipeRight();
                             return true;
@@ -185,7 +185,7 @@ public class MyKeyBoardView extends KeyboardView  {
                         }
                     }
                 } else {
-                    if(e1.getY()<getHeight() / 2){
+                    if((e1.getY()+e2.getY()/2) < getHeight() / 2){
                         if (velocityX > mSwipeThreshold && absY < absX && deltaX > travelX) {
                             rightTopSwipeRight();
                             return true;

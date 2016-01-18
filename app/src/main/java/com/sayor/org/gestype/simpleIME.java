@@ -20,7 +20,10 @@ public class simpleIME extends InputMethodService
         kv.setKeyboard(keyboard);
         kv.setOnKeyboardActionListener(this);
         kv.SetOnMyKeyboardActionListener(this);
-        kv.setPreviewEnabled(false);
+        kv.setPreviewEnabled(true);
+        //SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        //int color = pref.getInt("color", 0xFF000000);
+        //kv.setBackgroundResource(R.drawable.keybackground);
         return kv;
     }
 

@@ -1,46 +1,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:layout_height="match_parent" tools:context=".MainActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:id="@+id/etMain"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/toolbar"
+        android:layout_alignLeft="@+id/tvInst"
+        android:layout_alignStart="@+id/tvInst"
+        android:layout_alignRight="@+id/tvInst"
+        android:layout_alignEnd="@+id/tvInst" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear"
+        android:background="@drawable/button_background"
         android:id="@+id/btClear"
+        android:onClick="onClear"
         android:layout_below="@+id/etMain"
         android:layout_alignRight="@+id/etMain"
-        android:layout_alignEnd="@+id/etMain"
-        android:onClick="onClear" />
+        android:layout_alignEnd="@+id/etMain" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enable GesType"
         android:id="@+id/btKeyboard"
+        android:background="@drawable/button_background"
         android:onClick="onSettings"
+        android:width="50sp"
+        android:layout_marginBottom="58dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvInst"
         android:text="@string/desc"
-        android:layout_marginBottom="40dp"
         android:layout_above="@+id/btKeyboard"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="86dp" />
 
 </RelativeLayout>
